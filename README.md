@@ -39,7 +39,7 @@ We constructed a Convolutional Neural Network (CNN) using Keras' Sequential API.
     - Converts the output into a probability distribution over the 10 classes.
 
 # Hyperparameter Tuning
-To enhance model performance, we tuned several hyperparameters using Keras Tuner's RandomSearch:
+To enhance model performance, we tuned several hyperparameters using Keras Tuner's `RandomSearch`:
 - Layer 7 `Dropout` - proportion of data to drop off: `0.2`, `0.3`, `0.4`, `0.5`
 - Layer 9 `Dense` - number of neurons: `256`, `320`, `384`, `448`, `512`
 - Layer 11 `Dropout` - proportion of data to drop off: `0.2`, `0.3`, `0.4`, `0.5`
@@ -58,8 +58,8 @@ After training the model, we achieved an accuracy score of 90.7% on the training
 The final test score was 91.6%, comparable to the validation accuracy, indicating low evidence of overfitting. Precision and recall scores were both 92%.
 
 # Detailed Performance
-- Lower Performance: The model struggled more with items related to the upper body, such as T-shirt/top, Pullover, Coat, and Shirt. The accuracy for Shirt was notably lower, with an F1 score of 75%.
-- Higher Performance: The model performed exceptionally well on items such as Trouser, Sandal, Bag, and Ankle Boot, with F1 scores of ≥97%.
+- Lower Performance: The model struggled more with items related to the upper body, such as `T-shirt/top`, `Pullover`, `Coat`, and `Shirt`. The accuracy for `Shirt` was notably lower, with an F1 score of 75%.
+- Higher Performance: The model performed exceptionally well on items such as `Trouser`, `Sandal`, `Bag`, and `Ankle Boot`, with F1 scores of ≥97%.
 
 # Visualizations
 The confusion matrix visualized the number of correct classifications and misclassifications for each item, indicating where the model performed well and where it struggled. The ROC-AUC scores for each class were consistently high, with the lowest being 0.976 for Shirt and several others near perfect (>0.999), demonstrating the model's excellent performance in distinguishing between positive and negative instances for each class.
