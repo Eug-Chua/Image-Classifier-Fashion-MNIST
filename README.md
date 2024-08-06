@@ -21,39 +21,39 @@ Each image is 28x28 pixels. The categories are as follows:
 
 # Model Architecture
 We constructed a Convolutional Neural Network (CNN) using Keras' Sequential API. The model comprises the following 12 layers:
-1. Conv2D: A convolutional layer with 64 filters of size 3x3.
+1. `Conv2D`: A convolutional layer with 64 filters of size 3x3.
     - Slides filters over the input image, computing dot products at each position to create feature maps.
-2. BatchNormalization: Normalizes and scales the output of the previous layer.
-3. MaxPooling2D: Reduces the spatial dimensions of the feature maps by taking the maximum value over a 2x2 window.
-4. Conv2D: A convolutional layer with 128 filters of size 3x3.
+2. `BatchNormalization`: Normalizes and scales the output of the previous layer.
+3. `MaxPooling2D`: Reduces the spatial dimensions of the feature maps by taking the maximum value over a 2x2 window.
+4. `Conv2D`: A convolutional layer with 128 filters of size 3x3.
     - Extracts more complex features by combining lower-level features detected by earlier layers.
-5. BatchNormalization: Normalizes and scales the output of the previous layer.
-6. MaxPooling2D: Further reduces the spatial dimensions of the feature maps.
-7. Dropout: Randomly drops a proportion of the input units to prevent overfitting.
-8. Flatten: Flattens the 2D feature maps into a 1D vector for transitioning to fully connected layers.
-9. Dense: A fully connected layer with ReLU activation.
+5. `BatchNormalization`: Normalizes and scales the output of the previous layer.
+6. `MaxPooling2D`: Further reduces the spatial dimensions of the feature maps.
+7. `Dropout`: Randomly drops a proportion of the input units to prevent overfitting.
+8. `Flatten`: Flattens the 2D feature maps into a 1D vector for transitioning to fully connected layers.
+9. `Dense`: A fully connected layer with ReLU activation.
     - Learns complex representations by connecting all neurons of the previous layer.
-10. BatchNormalization: Normalizes and scales the output of the previous layer.
-11. Dropout: Randomly drops a proportion of the input units to prevent overfitting.
-12. Dense: The final fully connected layer with softmax activation.
+10. `BatchNormalization`: Normalizes and scales the output of the previous layer.
+11. `Dropout`: Randomly drops a proportion of the input units to prevent overfitting.
+12. `Dense`: The final fully connected layer with softmax activation.
     - Converts the output into a probability distribution over the 10 classes.
 
 # Hyperparameter Tuning
 To enhance model performance, we tuned several hyperparameters using Keras Tuner's RandomSearch:
-- Layer 7 Dropout: Proportions of 0.2, 0.3, 0.4, 0.5
-- Layer 9 Dense Units: 256, 320, 384, 448, 512
-- Layer 11 Dropout: Proportions of 0.2, 0.3, 0.4, 0.5
-- Learning Rate: Values ranging from 0.0001 to 0.01, inputted into the Adam optimizer
+- Layer 7 `Dropout` - proportion of data to drop off: `0.2`, `0.3`, `0.4`, `0.5`
+- Layer 9 `Dense` - number of neurons: `256`, `320`, `384`, `448`, `512`
+- Layer 11 `Dropout` - proportion of data to drop off: `0.2`, `0.3`, `0.4`, `0.5`
+- `learning_rate` - ranges from 0.0001 to 0.01; value will beinputted into the `Adam` optimizer
 
 # Cross-Validation and Training
 To prevent overfitting and ensure robust performance, we employed 4-fold cross-validation during hyperparameter tuning. We set the number of epochs to 10 and `max_trials` to 3, resulting in 12 model trainings (3 trials * 4 folds) and a total of 120 epoch trainings across the entire tuning process.
 
 # Model Evaluation
 After training the model, we achieved an accuracy score of 90.7% on the training data. The best hyperparameters identified were:
-- Layer 7 Dropout: 0.4
-- Layer 9 Dense Units: 320
-- Layer 11 Dropout: 0.4
-- Learning Rate: 0.000263474572751995
+- Layer 7 `Dropout` - proportion of data to drop off: `0.4`
+- Layer 9 `Dense` - number of neurons: `320`
+- Layer 11 `Dropout` - proportion of data to drop off: `0.4`
+- `learning_rate` - 0.000263474572751995
 
 The final test score was 91.6%, comparable to the validation accuracy, indicating low evidence of overfitting. Precision and recall scores were both 92%.
 
